@@ -1,0 +1,32 @@
+{% extends './base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+<div class="login-page">
+    <div class="form">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <form class="register-form" action="register" method="POST">
+            <input type="text" placeholder="Nombre Completo" name="nombre" required>
+            <input type="text" placeholder="Correo" name="correo" required>
+            <input type="password" placeholder="Contraseña" name="password" required>
+            <button>crear</button>
+            <p class="message">¿Ya tienes una cuenta? <a href="#">Iniciar sesión</a></p>
+        </form>
+        <form class="login-form" action="/login/" method="POST">
+            <input type="text" placeholder="Correo" name="correo" required>
+            <input type="password" placeholder="Contraseña" name="password" required>
+            <button>login</button>
+            <p class="message">¿No tienes una cuenta? <a href="#">Crear una</a></p>
+        </form>
+    </div>
+</div>
+<script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src="/static/js/script.js"></script>
+{% endblock %}

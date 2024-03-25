@@ -1,0 +1,42 @@
+{% extends './base.html' %}
+
+{% block customCSS %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/user.css') }}">{% endblock %}
+
+{% block title %}Inicio | Admin{% endblock %}
+
+{% block body %}
+<header class="Header" data-header>
+    <div class="Header-inner" data-header-nav>
+        <div class="logo">
+            <img src="/static/images/logo.jpg" alt="">
+        </div>
+        <nav class="Header-nav" data-nav>
+            <div class="Header-nav-item" data-nav-item="3">
+                <a href="{{url_for('admin.agregarTareas')}}">Agregar tareas</a>
+            </div>
+            <div class="Header-nav-item" data-nav-item="4">
+                <a href="{{url_for('admin.agregarIntegrantes')}}">Editar integrantes </a>
+            </div>
+            <div class="Header-nav-item" data-nav-item="5">
+                <a href="{{url_for('session.logout')}}">Cerrar sesión</a>
+            </div>
+        </nav>
+        <button class="MobileNav-trigger" data-mobile-nav-trigger>
+            <div class="MobileNav-trigger-inner"></div>
+        </button>
+    </div>
+</header>
+<div class="container">
+    <div class="columna-izquierda">
+        <h1>¡Bienvenido a CIRCLE VISION!</h1>
+        <p>Estamos aquí para ayudarte a gestionar tus proyectos de manera eficiente y efectiva.
+            Ya sea que estés trabajando en un proyecto individual o en equipo, nuestra plataforma está diseñada para
+            ofrecerte las herramientas necesarias para organizar tus tareas, establecer plazos claros y colaborar de
+            manera fluida con tus colegas.</p>
+    </div>
+    <div class="columna-derecha">
+        <img src="/static/images/gestion.png" alt="Descripción de la imagen">
+    </div>
+</div>
+{% endblock %}

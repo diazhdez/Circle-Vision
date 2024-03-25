@@ -1,0 +1,33 @@
+{% extends './base.html' %}
+
+{% block title %}Tareas{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center mt-5 mb-5">Tareas para Integradora</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        {% for tarea in tareas %}
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="text-center">{{ tarea.nombre }}</h5>
+                </div>
+                <div class="card-body">
+                    <small>Descripción</small>
+                    <input type="text" class="form-control" value="{{ tarea.descripcion }}" name="descripcion" readonly>
+                    <small>Encargado</small>
+                    <input type="text" class="form-control" value="{{ tarea.encargado }}" name="encargado" readonly>
+                    <small>Inicio</small>
+                    <input type="date" class="form-control" value="{{ tarea.inicio }}" name="inicio" readonly>
+                    <small>Entrega</small>
+                    <input type="date" class="form-control" value="{{ tarea.entrega }}" name="entrega" readonly>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends './base.html' %}
+
+{% block title %}Integrantes{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center mt-5 mb-5">Integrantes de Integradora</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        {% for integrante in integrantes %}
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="text-center">{{ integrante.rol }}</h5>
+                </div>
+                <div class="card-body">
+                    <small>Nombre</small>
+                    <input type="text" class="form-control" value="{{ integrante.nombre }}" name="nombre" readonly>
+                    <small>Apellidos</small>
+                    <input type="text" class="form-control" value="{{ integrante.apellidos }}" name="apellidos"
+                        readonly>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

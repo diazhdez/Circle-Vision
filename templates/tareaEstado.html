@@ -1,0 +1,74 @@
+{% extends './base.html' %}
+
+{% block title %}Tareas{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center mt-5 mb-5">Ingresa los avances de tus tareas</h1>
+</div>
+
+<div class="container mb-5 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="card shadow bg">
+                <div class="card-body">
+                    <form action="/agregarEstado/" method="POST" enctype="multipart/form-data">
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <!-- Agregar el nombre del usuario automáticamente -->
+                                <label>Nombre:</label>
+                                <input type="text" class="form-control mb-3" name="nombre">
+                            </div>
+                            <div class="col-12">
+                                <label>Tarea:</label>
+                                <input type="text" class="form-control mb-3" name="tarea">
+                            </div>
+                            <div class="col-12">
+                                <!-- Cambiar el campo de estado a un menú desplegable con tres opciones -->
+                                <label>Estado:</label>
+                                <select class="form-select" name="estado">
+                                    <option value="Enterado">Enterado</option>
+                                    <option value="Proceso">En Proceso</option>
+                                    <option value="Terminado">Terminado</option>
+                                </select>
+                            </div>
+                            <div class="col-12 mt-3">
+                                <label for="archivo">Archivo:</label>
+                                <input type="file" class="form-control-file" id="archivo" name="archivo" required
+                                    accept=".pdf">
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-success mt-3">Enviar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        {% for tareasEstado in tareasEstado %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="text-center">{{ tareasEstado.tarea }}</h5>
+                </div>
+                <div class="card-body">
+                    <input type="hidden" class="form-control" value="{{ tareasEstado._id }}" name="id" readonly>
+                    <small>Encargado</small>
+                    <input type="text" class="form-control" value="{{ tareasEstado.nombre }}" name="nombre" readonly>
+                    <small>Estado</small>
+                    <input type="text" class="form-control" value="{{ tareasEstado.estado}}" name="estado" readonly>
+                    {% if tareasEstado.archivo %}
+                    <a href="/descargarArchivo/{{ tareasEstado._id }}" class="btn btn-primary btn-sm mt-3">Descargar</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

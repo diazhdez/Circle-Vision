@@ -1,0 +1,55 @@
+{% extends './base.html' %}
+
+{% block title %}Administrador{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center mt-5 mb-5">Administrador de integrantes para Integradora</h1>
+</div>
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="text-center">Agregar Integrantes</h5>
+                </div>
+                <div class="card-body">
+                    <form action="/addIntegrante" method="POST">
+                        <label>Nombre</label>
+                        <input type="text" class="form-control mb-3" name="nombre">
+                        <label>Apellidos</label>
+                        <input type="text" class="form-control mb-3" name="apellidos">
+                        <label>Rol</label>
+                        <input type="text" class="form-control mb-3" name="rol">
+                        <button class="btn btn-custom" type="submit">Agregar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        {% for integrante in integrantes %}
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="text-center">{{ integrante.nombre }}</h5>
+                </div>
+                <div class="card-body">
+                    <form action="/editIntegrante/{{ integrante.nombre }}" method="POST">
+                        <small>Nombre</small>
+                        <input type="text" class="form-control" value="{{ integrante.nombre }}" name="nombre">
+                        <small>Apellidos</small>
+                        <input type="text" class="form-control" value="{{ integrante.apellidos }}" name="apellidos">
+                        <small>Rol</small>
+                        <input type="text" class="form-control" value="{{ integrante.rol }}" name="rol">
+                        <button class="btn btn-editar btn-sm mt-3" type="submit">Editar</button>
+                        <a href="{{ url_for('admin.deleteIntegrante', nombre_integrante=integrante.nombre) }}"
+                            class="btn btn-eliminar btn-sm mt-3">Eliminar</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
