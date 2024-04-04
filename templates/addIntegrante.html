@@ -1,8 +1,36 @@
 {% extends './base.html' %}
 
+{% block customCSS %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/user.css') }}">{% endblock %}
+
 {% block title %}Administrador{% endblock %}
 
 {% block body %}
+<header class="Header" data-header>
+    <div class="Header-inner" data-header-nav>
+        <div class="logo">
+            <img src="/static/images/logo.jpg" alt="">
+        </div>
+        <nav class="Header-nav" data-nav>
+            <div class="Header-nav-item" data-nav-item="3">
+                <a href="{{url_for('admin.agregarTareas')}}">Agregar tareas</a>
+            </div>
+            <div class="Header-nav-item" data-nav-item="4">
+                <a href="{{url_for('admin.agregarIntegrantes')}}">Editar integrantes</a>
+            </div>
+            <div class="Header-nav-item" data-nav-item="4">
+                <a href="{{url_for('admin.tareasEstadoAdmin')}}">Avances</a>
+            </div>
+            <div class="Header-nav-item" data-nav-item="5">
+                <a href="{{url_for('session.logout')}}">Cerrar sesión</a>
+            </div>
+        </nav>
+        <button class="MobileNav-trigger" data-mobile-nav-trigger>
+            <div class="MobileNav-trigger-inner"></div>
+        </button>
+    </div>
+</header>
+
 <div class="container">
     <h1 class="text-center mt-5 mb-5">Administrador de integrantes para Integradora</h1>
 </div>
@@ -35,7 +63,7 @@
                     <h5 class="text-center">{{ integrante.nombre }}</h5>
                 </div>
                 <div class="card-body">
-                    <form action="/editIntegrante/{{ integrante.nombre }}" method="POST">
+                    <form action="/editIntegrante/{{ integrante._id }}" method="POST">
                         <small>Nombre</small>
                         <input type="text" class="form-control" value="{{ integrante.nombre }}" name="nombre">
                         <small>Apellidos</small>
@@ -43,7 +71,7 @@
                         <small>Rol</small>
                         <input type="text" class="form-control" value="{{ integrante.rol }}" name="rol">
                         <button class="btn btn-editar btn-sm mt-3" type="submit">Editar</button>
-                        <a href="{{ url_for('admin.deleteIntegrante', nombre_integrante=integrante.nombre) }}"
+                        <a href="{{ url_for('admin.deleteIntegrante', id_integrante=integrante._id) }}"
                             class="btn btn-eliminar btn-sm mt-3">Eliminar</a>
                     </form>
                 </div>

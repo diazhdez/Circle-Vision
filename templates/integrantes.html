@@ -1,8 +1,36 @@
 {% extends './base.html' %}
 
+{% block customCSS %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/user.css') }}">{% endblock %}
+
 {% block title %}Integrantes{% endblock %}
 
 {% block body %}
+<header class="Header" data-header>
+    <div class="Header-inner" data-header-nav>
+        <div class="logo">
+            <img src="/static/images/logo.jpg" alt="">
+        </div>
+        <nav class="Header-nav" data-nav>
+            <div class="Header-nav-item" data-nav-item="3">
+                <a href="{{url_for('user.tareas')}}">Tareas</a>
+            </div>
+            <div class="Header-nav-item" data-nav-item="4">
+                <a href="{{url_for('user.integrantes')}}">Integrantes</a>
+            </div>
+            <div class="Header-nav-item" data-nav-item="4">
+                <a href="{{url_for('user.tareasEstado')}}">Avances</a>
+            </div>
+            <div class="Header-nav-item" data-nav-item="5">
+                <a href="{{url_for('session.logout')}}">Cerrar sesión</a>
+            </div>
+        </nav>
+        <button class="MobileNav-trigger" data-mobile-nav-trigger>
+            <div class="MobileNav-trigger-inner"></div>
+        </button>
+    </div>
+</header>
+
 <div class="container">
     <h1 class="text-center mt-5 mb-5">Integrantes de Integradora</h1>
 </div>

@@ -13,13 +13,13 @@
         </div>
         <nav class="Header-nav" data-nav>
             <div class="Header-nav-item" data-nav-item="3">
-                <a href="{{url_for('user.tareas')}}">Tareas</a>
+                <a href="{{url_for('admin.agregarTareas')}}">Agregar tareas</a>
             </div>
             <div class="Header-nav-item" data-nav-item="4">
-                <a href="{{url_for('user.integrantes')}}">Integrantes</a>
+                <a href="{{url_for('admin.agregarIntegrantes')}}">Editar integrantes</a>
             </div>
             <div class="Header-nav-item" data-nav-item="4">
-                <a href="{{url_for('user.tareasEstado')}}">Avances</a>
+                <a href="{{url_for('admin.tareasEstadoAdmin')}}">Avances</a>
             </div>
             <div class="Header-nav-item" data-nav-item="5">
                 <a href="{{url_for('session.logout')}}">Cerrar sesión</a>
@@ -32,26 +32,28 @@
 </header>
 
 <div class="container">
-    <h1 class="text-center mt-5 mb-5">Tareas para Integradora</h1>
+    <h1 class="text-center mt-5 mb-5">Avances de las tareas</h1>
 </div>
 
 <div class="container">
     <div class="row">
-        {% for tarea in tareas %}
-        <div class="col-md-6 mb-4">
+        {% for tareasEstado in tareasEstado %}
+        <div class="col-md-4 mb-4">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="text-center">{{ tarea.nombre }}</h5>
+                    <h5 class="text-center">{{ tareasEstado.tarea }}</h5>
                 </div>
                 <div class="card-body">
-                    <small>Descripción</small>
-                    <input type="text" class="form-control" value="{{ tarea.descripcion }}" name="descripcion" readonly>
+                    <input type="hidden" class="form-control" value="{{ tareasEstado._id }}" name="id" readonly>
                     <small>Encargado</small>
-                    <input type="text" class="form-control" value="{{ tarea.encargado }}" name="encargado" readonly>
-                    <small>Inicio</small>
-                    <input type="date" class="form-control" value="{{ tarea.inicio }}" name="inicio" readonly>
-                    <small>Entrega</small>
-                    <input type="date" class="form-control" value="{{ tarea.entrega }}" name="entrega" readonly>
+                    <input type="text" class="form-control" value="{{ tareasEstado.nombre }}" name="nombre" readonly>
+                    <small>Estado</small>
+                    <input type="text" class="form-control" value="{{ tareasEstado.estado}}" name="estado" readonly>
+                    {% if tareasEstado.archivo %}
+                    <a href="/descargarArchivo/{{ tareasEstado._id }}" class="btn btn-primary btn-sm mt-3">Descargar</a>
+                    {% endif %}
+                    <a href="{{ url_for('admin.deleteAvance', id_avance=tareasEstado._id) }}"
+                        class="btn btn-eliminar btn-sm mt-3">Eliminar</a>
                 </div>
             </div>
         </div>

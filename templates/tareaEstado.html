@@ -1,8 +1,36 @@
 {% extends './base.html' %}
 
+{% block customCSS %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/user.css') }}">{% endblock %}
+
 {% block title %}Tareas{% endblock %}
 
 {% block body %}
+<header class="Header" data-header>
+    <div class="Header-inner" data-header-nav>
+        <div class="logo">
+            <img src="/static/images/logo.jpg" alt="">
+        </div>
+        <nav class="Header-nav" data-nav>
+            <div class="Header-nav-item" data-nav-item="3">
+                <a href="{{url_for('user.tareas')}}">Tareas</a>
+            </div>
+            <div class="Header-nav-item" data-nav-item="4">
+                <a href="{{url_for('user.integrantes')}}">Integrantes</a>
+            </div>
+            <div class="Header-nav-item" data-nav-item="4">
+                <a href="{{url_for('user.tareasEstado')}}">Avances</a>
+            </div>
+            <div class="Header-nav-item" data-nav-item="5">
+                <a href="{{url_for('session.logout')}}">Cerrar sesión</a>
+            </div>
+        </nav>
+        <button class="MobileNav-trigger" data-mobile-nav-trigger>
+            <div class="MobileNav-trigger-inner"></div>
+        </button>
+    </div>
+</header>
+
 <div class="container">
     <h1 class="text-center mt-5 mb-5">Ingresa los avances de tus tareas</h1>
 </div>
@@ -17,16 +45,17 @@
                             <div class="col-12">
                                 <!-- Agregar el nombre del usuario automáticamente -->
                                 <label>Nombre:</label>
-                                <input type="text" class="form-control mb-3" name="nombre">
+                                <input type="text" class="form-control mb-3" name="nombre" value="{{ user.nombre }}"
+                                    readonly required>
                             </div>
                             <div class="col-12">
                                 <label>Tarea:</label>
-                                <input type="text" class="form-control mb-3" name="tarea">
+                                <input type="text" class="form-control mb-3" name="tarea" required>
                             </div>
                             <div class="col-12">
                                 <!-- Cambiar el campo de estado a un menú desplegable con tres opciones -->
                                 <label>Estado:</label>
-                                <select class="form-select" name="estado">
+                                <select class="form-select" name="estado" required>
                                     <option value="Enterado">Enterado</option>
                                     <option value="Proceso">En Proceso</option>
                                     <option value="Terminado">Terminado</option>

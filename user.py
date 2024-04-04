@@ -71,7 +71,7 @@ def tareasEstado():
         estadosRecibidos = tareasEstado.find()
 
         if user:
-            return render_template('tareaEstado.html', tareasEstado=estadosRecibidos)
+            return render_template('tareaEstado.html', tareasEstado=estadosRecibidos, user=user)
         else:
             return redirect(url_for('index'))
     else:
@@ -95,7 +95,7 @@ def agregarEstado():
                 archivo_data = archivo.read()
                 archivo_bin = Binary(archivo_data)
             else:
-                return redirect(url_for('tareasEstado'))
+                return redirect(url_for('user.tareasEstado'))
         else:
             archivo_bin = None
 
@@ -110,9 +110,9 @@ def agregarEstado():
         tareasEstado.insert_one(tareasEstadoDict)
 
         # Reemplaza 'nombre_de_tu_ruta' con la ruta a la que deseas redirigir después de agregar la tarea
-        return redirect(url_for('tareasEstado'))
+        return redirect(url_for('user.tareasEstado'))
 
-    return redirect(url_for('tareasEstado'))
+    return redirect(url_for('user.tareasEstado'))
 
 
 @user_routes.route('/descargarArchivo/<string:estado_id>')

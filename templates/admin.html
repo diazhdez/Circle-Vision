@@ -1,7 +1,7 @@
 {% extends './base.html' %}
 
 {% block customCSS %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/user.css') }}">{% endblock %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/user.css') }}">{% endblock %}
 
 {% block title %}Inicio | Admin{% endblock %}
 
@@ -16,7 +16,10 @@
                 <a href="{{url_for('admin.agregarTareas')}}">Agregar tareas</a>
             </div>
             <div class="Header-nav-item" data-nav-item="4">
-                <a href="{{url_for('admin.agregarIntegrantes')}}">Editar integrantes </a>
+                <a href="{{url_for('admin.agregarIntegrantes')}}">Editar integrantes</a>
+            </div>
+            <div class="Header-nav-item" data-nav-item="4">
+                <a href="{{url_for('admin.tareasEstadoAdmin')}}">Avances</a>
             </div>
             <div class="Header-nav-item" data-nav-item="5">
                 <a href="{{url_for('session.logout')}}">Cerrar sesión</a>
