@@ -1,35 +1,36 @@
 {% extends './base.html' %}
 
 {% block customCSS %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/user.css') }}">{% endblock %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/user.css') }}">
+{% endblock %}
 
 {% block title %}Inicio | User{% endblock %}
 
 {% block body %}
-<header class="Header" data-header>
-    <div class="Header-inner" data-header-nav>
-        <div class="logo">
-            <img src="/static/images/logo.jpg" alt="">
-        </div>
-        <nav class="Header-nav" data-nav>
-            <div class="Header-nav-item" data-nav-item="3">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{{url_for('user.user')}}">Circle Vision</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
                 <a href="{{url_for('user.tareas')}}">Tareas</a>
-            </div>
-            <div class="Header-nav-item" data-nav-item="4">
+            </li>
+            <li class="nav-item">
                 <a href="{{url_for('user.integrantes')}}">Integrantes</a>
-            </div>
-            <div class="Header-nav-item" data-nav-item="4">
+            </li>
+            <li class="nav-item">
                 <a href="{{url_for('user.tareasEstado')}}">Avances</a>
-            </div>
-            <div class="Header-nav-item" data-nav-item="5">
+            </li>
+            <li class="nav-item">
                 <a href="{{url_for('session.logout')}}">Cerrar sesión</a>
-            </div>
-        </nav>
-        <button class="MobileNav-trigger" data-mobile-nav-trigger>
-            <div class="MobileNav-trigger-inner"></div>
-        </button>
+            </li>
+        </ul>
     </div>
-</header>
+</nav>
+
 <div class="container">
     <div class="columna-izquierda">
         <h1>¡Bienvenido a CIRCLE VISION!</h1>
