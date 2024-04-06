@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, send_file, request, session
+from flask import Blueprint, render_template, redirect, url_for, send_file, flash, request, session
 
 from functions import get_user
 
@@ -95,6 +95,7 @@ def agregarEstado():
                 archivo_data = archivo.read()
                 archivo_bin = Binary(archivo_data)
             else:
+                flash('El archivo debe ser PDF')
                 return redirect(url_for('user.tareasEstado'))
         else:
             archivo_bin = None
@@ -109,6 +110,7 @@ def agregarEstado():
 
         tareasEstado.insert_one(tareasEstadoDict)
 
+        flash('Tarea agregada correctamente')
         # Reemplaza 'nombre_de_tu_ruta' con la ruta a la que deseas redirigir después de agregar la tarea
         return redirect(url_for('user.tareasEstado'))
 
@@ -130,4 +132,5 @@ def descargarArchivo(estado_id):
         archivo_stream.seek(0)
         return send_file(archivo_stream, mimetype='application/pdf', as_attachment=True, download_name='archivo.pdf')
     else:
-        return redirect(url_for('tareasEstado'))
+        flash('Archivo no encontrado')
+        return redirect(url_for('user.tareasEstado'))

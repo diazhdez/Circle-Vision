@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, redirect, session, request
+from flask import Blueprint, render_template, url_for, redirect, flash, session, request
 
 import bcrypt
 
@@ -29,6 +29,7 @@ def login():
         session['correo'] = correo
         return redirect(url_for('admin.admin'))
 
+    flash('Correo o contraseña incorrectos')
     return redirect(url_for('index'))
 
 
@@ -47,6 +48,7 @@ def register():
             session['correo'] = request.form['correo']
             return redirect(url_for('index'))
 
+        flash('El correo ya está en uso')
         return redirect(url_for('index'))
 
     return render_template('register.html')
