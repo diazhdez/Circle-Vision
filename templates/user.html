@@ -2,6 +2,7 @@
 
 {% block customCSS %}
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/user.css') }}">
+<a href="https://www.flaticon.es/iconos-gratis/logotipo-de-instagram" title="logotipo de instagram iconos"></a>
 {% endblock %}
 
 {% block title %}Inicio | User{% endblock %}
@@ -32,15 +33,19 @@
 </nav>
 
 <div class="container">
-    <div class="columna-izquierda">
-        <h1>¡Bienvenido a CIRCLE VISION!</h1>
+    <div class="row">
+        <h1 class="text-center mb-5 text-black">¡Bienvenido a Circle Vision!</h1>
         <p>Estamos aquí para ayudarte a gestionar tus proyectos de manera eficiente y efectiva.
             Ya sea que estés trabajando en un proyecto individual o en equipo, nuestra plataforma está diseñada para
             ofrecerte las herramientas necesarias para organizar tus tareas, establecer plazos claros y colaborar de
-            manera fluida con tus colegas.</p>
-    </div>
-    <div class="columna-derecha">
-        <img src="/static/images/gestion.png" alt="Descripción de la imagen">
+            manera fluida con tus colegas.
+        </p>
+    
+        <div class="redes-sociales">
+            <a href="https://twitter.com/UTAcapulco"><img src="/static/images/twiter.png" alt="Twiter"></a>
+            <a href="https://www.youtube.com/@universidadtecnologicadeac8149"><img src="/static/images/youtube.png" alt="youtube"></a>
+            <a href="https://www.instagram.com/utacapulco/"><img src="/static/images/instagram1.png" alt="Instagram"></a>
+        </div>
     </div>
 </div>
 {% endblock %}

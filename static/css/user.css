@@ -163,6 +163,7 @@ html {
   height: 100%;
   justify-content: space-around;
   width: 80vw;
+  font-family: "Proxima Nova", "Helvetica Nueue", Helvetica, Arial, sans-serif;
 }
 
 .container .card {
@@ -176,213 +177,34 @@ html {
   width: 100%;
 }
 
-.MobileNav {
-  height: calc(100% - 55px);
-  left: 0;
-  pointer-events: none;
-  position: fixed;
-  top: 70px;
-  width: 100%;
-  z-index: 9;
-}
 
-.MobileNav-inner {
-  background: white;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  max-width: 100%;
-  overflow-y: scroll;
-  position: absolute;
-  right: 0;
-  transform: translate(0, -105%);
-  transition: transform 0.4s ease, visibility 0.4s ease;
-  visibility: hidden;
-  width: 100%;
-}
-
-.MobileNav-inner .Button {
-  letter-spacing: 1px;
-  line-height: 3.8;
-  margin: 20px -8px 20px;
-  width: 100%;
-}
-
-.MobileNav-inner .MobileNav-trigger {
-  display: none;
-  position: absolute;
-  right: 38px;
-  top: 30px;
-}
-
-.MobileNav-item {
-  color: navy;
-  display: none;
-  font-family: Lato, sans-serif;
-  font-size: 24px;
-  font-weight: bold;
-  margin: 26px 0;
-  transition: opacity 0.3s ease;
-}
-
-.MobileNav-item.is-visible {
-  display: block;
-}
-
-.MobileNav-item-title {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.MobileNav-item-title a {
-  color: black;
-  flex-shrink: 0;
-  text-decoration: none;
-}
-
-.MobileNav-item-title span {
-  min-width: 32px;
-  position: relative;
-  width: 100%;
-}
-
-.MobileNav-item-title span::after {
-  border-left: 2px solid lightgray;
-  border-top: 2px solid lightgray;
-  content: "";
-  display: block;
-  height: 14px;
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-75%) rotate(225deg);
-  transition: transform 0.2s ease;
-  width: 14px;
-}
-
-.MobileNav-overlay {
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  transition: background 0.4s ease;
-  width: 100%;
-}
-
-.MobileNav-trigger {
-  align-items: center;
-  align-self: center;
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: none;
-  flex-shrink: 0;
-  height: 100%;
-}
-
-.MobileNav-trigger-inner {
-  height: 12px;
-  position: relative;
-  width: 24px;
-}
-
-.MobileNav-trigger-inner::after {
-  background: #524fae;
-  content: "";
-  height: 2px;
-  left: 0;
-  position: absolute;
-  top: 0;
-  transform-origin: 0% 50%;
-  transition: transform 0.2s ease;
-  width: 100%;
-}
-
-.MobileNav-trigger-inner::before {
-  background: #524fae;
-  bottom: 0;
-  content: "";
-  height: 2px;
-  left: 0;
-  position: absolute;
-  transform-origin: 0% 50%;
-  transition: transform 0.2s ease;
-  width: 100%;
-}
-
-.MobileNav-trigger.is-active .MobileNav-trigger-inner::after {
-  transform: translateY(-4px) rotate(45deg);
-}
-
-.MobileNav-trigger.is-active .MobileNav-trigger-inner::before {
-  transform: translateY(3px) rotate(-45deg);
-}
-
-@media screen and (min-width: 481px) {
-  .MobileNav {
-    height: 100%;
-    top: 0;
-    z-index: 11;
-  }
-
-  .MobileNav-inner {
-    padding-top: 90px;
-    transform: translate(100%, 0);
-    width: 375px;
-  }
-
-  .MobileNav-inner .MobileNav-trigger {
-    display: block;
-  }
-
-  .MobileNav-trigger {
-    display: none;
-  }
-}
-
-@media screen and (min-width: 871px) {
-  .MobileNav-inner {
-    padding-top: 160px;
-  }
-}
-
-
-.container {
-  display: flex;
-  font-family: "Proxima Nova", "Helvetica Nueue", Helvetica, Arial, sans-serif;
-}
-
-.columna-izquierda {
-  flex: none;
-  width: 50%;
-  max-width: 600px;
-  padding-right: 5px;
-  margin-top: 15%;
-
-
-}
-
-.container p {
-  font-size: 17px;
+.row p {
+  margin: 20px auto;
+  line-height: 25px;
   text-align: justify;
-  margin-bottom: 5px;
-}
-
-.columna-derecha {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-
-}
-
-.columna-derecha img {
-  height: 400px;
-  width: 400px;
-  margin-top: -24%;
+  font-size: 20px;
+  min-width: 250px;
+  color: #010002;
 }
 
 .container h1 {
   font-weight: bold;
-  margin-bottom: 20px;
+}
+
+.redes-sociales {
+  position: sticky;
+  text-align: center;
+}
+
+.redes-sociales img {
+  width: 50px;
+  /* Ajusta el tamaño de las imágenes según sea necesario */
+  height: auto;
+  margin: 0 10px;
+}
+
+.container img {
+  width: 50px;
+  /* Ajusta el tamaño de las imágenes según sea necesario */
+  margin: 0 10px;
 }
