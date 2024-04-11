@@ -34,6 +34,47 @@
     <h1 class="text-center mt-5 mb-5">Avances de las tareas</h1>
 </div>
 
+<div class="container mb-5 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="card shadow bg">
+                <div class="card-body">
+                    <form action="/agregarEstado/" method="POST" enctype="multipart/form-data">
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <!-- Agregar el nombre del usuario automáticamente -->
+                                <label>Nombre:</label>
+                                <input type="text" class="form-control mb-3" name="nombre" value="{{ admin.nombre }}"
+                                    readonly required>
+                            </div>
+                            <div class="col-12">
+                                <label>Tarea:</label>
+                                <input type="text" class="form-control mb-3" name="tarea" required>
+                            </div>
+                            <div class="col-12">
+                                <!-- Cambiar el campo de estado a un menú desplegable con tres opciones -->
+                                <label>Estado:</label>
+                                <select class="form-select" name="estado" required>
+                                    <option value="Proceso">En Proceso</option>
+                                    <option value="Terminado">Terminado</option>
+                                </select>
+                            </div>
+                            <div class="col-12 mt-3">
+                                <label for="archivo">Archivo:</label>
+                                <input type="file" class="form-control-file" id="archivo" name="archivo" required
+                                    accept=".pdf">
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-success mt-3">Enviar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container">
     <div class="row">
         {% for tareasEstado in tareasEstado %}

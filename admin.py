@@ -1,4 +1,8 @@
-from flask import Blueprint, render_template, url_for, redirect, jsonify, session, request
+from flask import Blueprint, render_template, url_for, redirect, jsonify, flash, send_file, session, request
+
+from io import BytesIO
+
+from bson.binary import Binary
 
 from bson import ObjectId
 
@@ -153,11 +157,69 @@ def tareasEstadoAdmin():
         estadosRecibidos = tareasEstado.find()
 
         if admin:
-            return render_template('tareaEstadoAdmin.html', tareasEstado=estadosRecibidos)
+            return render_template('tareaEstadoAdmin.html', tareasEstado=estadosRecibidos, admin=admin)
         else:
             return redirect(url_for('index'))
     else:
         return redirect(url_for('index'))
+
+
+# Creamos la ruta para agregar el estado
+@admin_routes.route('/agregarEstado/', methods=['POST'])
+def agregarEstado():
+    if request.method == 'POST':
+        tareasEstado = db['tareasEstado']
+        nombre = request.form['nombre']
+        tarea = request.form['tarea']
+        estado = request.form['estado']
+
+        # Procesar el archivo
+        archivo = request.files['archivo']
+
+        if archivo:
+            if archivo.filename.endswith('.pdf'):
+                archivo_data = archivo.read()
+                archivo_bin = Binary(archivo_data)
+            else:
+                flash('El archivo debe ser PDF')
+                return redirect(url_for('admin.tareasEstadoAdmin'))
+        else:
+            archivo_bin = None
+
+        # Insertar los datos en la colección 'tareasEstado'
+        tareasEstadoDict = {
+            'nombre': nombre,
+            'tarea': tarea,
+            'estado': estado,
+            'archivo': archivo_bin
+        }
+
+        tareasEstado.insert_one(tareasEstadoDict)
+
+        flash('Tarea agregada correctamente')
+        # Reemplaza 'nombre_de_tu_ruta' con la ruta a la que deseas redirigir después de agregar la tarea
+        return redirect(url_for('admin.tareasEstadoAdmin'))
+
+    return redirect(url_for('admin.tareasEstadoAdmin'))
+
+
+@admin_routes.route('/descargarArchivo/<string:estado_id>')
+def descargarArchivo(estado_id):
+    tareasEstado = db['tareasEstado']
+    estado = tareasEstado.find_one({'_id': ObjectId(estado_id)})
+
+    if estado and estado['archivo']:
+        # Obtener el contenido binario del CV
+        archivo_bin = estado['archivo']
+        # Crear un objeto BytesIO para almacenar el contenido binario
+        archivo_stream = BytesIO(archivo_bin)
+        # Enviar el contenido binario como un archivo adjunto
+        # Asegurar que la posición del cursor esté al inicio del archivo
+        archivo_stream.seek(0)
+        return send_file(archivo_stream, mimetype='application/pdf', as_attachment=True, download_name='archivo.pdf')
+    else:
+        flash('Archivo no encontrado')
+        return redirect(url_for('admin.tareasEstadoAdmin'))
 
 
 # Method DELETE
